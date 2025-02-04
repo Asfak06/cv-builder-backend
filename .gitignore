@@ -1,4 +1,4 @@
-src/config/database.js
+# src/config/database.js
 node_modules
 __test__
 .DS_Store
