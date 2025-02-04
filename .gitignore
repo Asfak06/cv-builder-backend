@@ -1,0 +1,7 @@
+src/config/database.js
+node_modules
+__test__
+.DS_Store
+public
+.env
+package-lock.json
