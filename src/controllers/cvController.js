@@ -1,28 +1,31 @@
 const CV = require("../models/cvModel");
 
-// 1️⃣ Create or Update CV
+// 1️⃣ Create or Update CV using _id
 exports.createOrUpdateCV = async (req, res) => {
-  const { userId, templateId, personalDetails, summary, experience, education, skills, references } = req.body;
+  const { cvId, userId, templateId, personalDetails, summary, experience, education, skills, references } = req.body;
 
   if (!userId || !templateId) {
     return res.status(400).json({ message: "User ID and Template ID are required" });
   }
 
   try {
-    let cv = await CV.findOne({ userId, templateId });
+    let cv;
 
-    if (cv) {
-      // Update existing CV
-      cv.personalDetails = personalDetails;
-      cv.summary = summary;
-      cv.experience = experience;
-      cv.education = education;
-      cv.skills = skills;
-      cv.references = references;
-      cv = await cv.save();
+    if (cvId) {
+      // ✅ Update an existing CV by its unique _id
+      cv = await CV.findOneAndUpdate(
+        { _id: cvId, userId }, // Ensure it belongs to the user
+        { personalDetails, summary, experience, education, skills, references },
+        { new: true } // Return updated document
+      );
+
+      if (!cv) {
+        return res.status(404).json({ message: "CV not found or does not belong to the user" });
+      }
+
       return res.status(200).json({ message: "CV updated successfully", cv });
     } else {
-      // Create new CV
+      // ✅ Create a new CV if cvId is not provided
       cv = new CV({ userId, templateId, personalDetails, summary, experience, education, skills, references });
       await cv.save();
       return res.status(201).json({ message: "CV created successfully", cv });
