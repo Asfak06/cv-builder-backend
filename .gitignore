@@ -3,5 +3,5 @@ node_modules
 __test__
 .DS_Store
 public
-.env
+# .env
 package-lock.json
