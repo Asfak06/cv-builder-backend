@@ -12,6 +12,7 @@ const cvSchema = new mongoose.Schema(
       phone: String,
       city: String,
       country: String,
+      profileImage: String,
     },
     summary: String,
     experience: [
