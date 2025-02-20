@@ -4,6 +4,7 @@ const cvSchema = new mongoose.Schema(
   {
     userId: { type: String, required: true }, // UUID of user
     templateId: { type: String, required: true }, // Selected template
+    selectedIndustry:String, 
     personalDetails: {
       jobTitle: String,
       firstName: String,
