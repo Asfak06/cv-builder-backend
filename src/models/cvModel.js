@@ -39,6 +39,17 @@ const cvSchema = new mongoose.Schema(
         company: String,
       },
     ],
+    customSections: [
+      {
+        sectionTitle: String,  
+        items: [
+          {
+            title: String,     
+            description: String 
+          }
+        ]
+      }
+    ],
     isDeleted: { type: Boolean, default: false }, // Soft delete flag ✅
   },
   { timestamps: true } // Auto-add createdAt, updatedAt

@@ -15,7 +15,7 @@ exports.createOrUpdateCV = async (req, res) => {
       // ✅ Update an existing CV by its unique _id
       cv = await CV.findOneAndUpdate(
         { _id: cvId, userId }, // Ensure it belongs to the user
-        { templateId,personalDetails, summary, experience, education, skills, references },
+        { templateId,personalDetails, summary, experience, education, skills, references,...req.body },
         { new: true } // Return updated document
       );
 
@@ -26,7 +26,7 @@ exports.createOrUpdateCV = async (req, res) => {
       return res.status(200).json({ message: "CV updated successfully", cv });
     } else {
       // ✅ Create a new CV if cvId is not provided
-      cv = new CV({ userId, templateId, selectedIndustry, personalDetails, summary, experience, education, skills, references });
+      cv = new CV({ userId, templateId, selectedIndustry, personalDetails, summary, experience, education, skills, references,...req.body  });
       await cv.save();
       return res.status(201).json({ message: "CV created successfully", cv });
     }
