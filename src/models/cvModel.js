@@ -32,6 +32,12 @@ const cvSchema = new mongoose.Schema(
       },
     ],
     skills: [String],
+    links: [
+      {
+        url:String,
+        label:String,
+      }
+    ],
     references: [
       {
         name: String,
@@ -39,6 +45,8 @@ const cvSchema = new mongoose.Schema(
         company: String,
       },
     ],
+    languages: [String],
+    hobbies: [String],
     customSections: [
       {
         sectionTitle: String,  
