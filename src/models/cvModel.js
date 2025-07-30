@@ -22,6 +22,7 @@ const cvSchema = new mongoose.Schema(
         company: String,
         startDate: String,
         endDate: String,
+        description: String, // Added description field
       },
     ],
     education: [
@@ -29,6 +30,7 @@ const cvSchema = new mongoose.Schema(
         degree: String,
         institution: String,
         year: String,
+        description: String, // Added description field
       },
     ],
     skills: [String],
